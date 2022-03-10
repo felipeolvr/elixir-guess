@@ -1,18 +1,5 @@
 defmodule Elixirguess do
-  @moduledoc """
-  Documentation for `Elixirguess`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Elixirguess.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def run() do
+    IO.puts("Let`s play Guess the Number")
   end
 end
