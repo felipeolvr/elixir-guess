@@ -1,4 +1,4 @@
-defmodule Guess do
+defmodule Elixirguess do
   use Application
 
   def start(_, _) do
@@ -12,6 +12,7 @@ defmodule Guess do
     IO.gets("Pick a difficult level (1, 2 or 3):")
     |> Integer.parse()
     |> parse_input()
+    |> get_range()
     |> IO.inspect()
   end
 
@@ -21,4 +22,21 @@ defmodule Guess do
   end
 
   def parse_input({num, _}), do: num
+
+  def get_range(level) do
+    case level do
+      1 ->
+        1..10
+
+      2 ->
+        1..100
+
+      3 ->
+        1..1000
+
+      _ ->
+        IO.puts("Invalid level!!!")
+        run()
+    end
+  end
 end
