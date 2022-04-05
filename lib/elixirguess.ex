@@ -13,4 +13,14 @@ defmodule Elixirguess do
     |> Integer.parse()
     |> IO.inspect()
   end
+
+  def parse_input(data) do
+    if data == :error do
+      IO.puts("Invalid level!!")
+      run()
+    else
+      {num, _} = data
+      num
+    end
+  end
 end
