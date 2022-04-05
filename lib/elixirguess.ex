@@ -12,6 +12,7 @@ defmodule Elixirguess do
     IO.gets("Pick a difficult level (1, 2 or 3):")
     |> parse_input()
     |> pickup_number()
+    |> play()
     |> IO.inspect()
   end
 
@@ -49,5 +50,10 @@ defmodule Elixirguess do
         IO.puts("Invalid level!!!")
         run()
     end
+  end
+
+  def play(picked_num) do
+    IO.gets("I have my number. What is your guess?")
+    |> parse_input()
   end
 end
