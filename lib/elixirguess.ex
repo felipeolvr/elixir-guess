@@ -11,8 +11,7 @@ defmodule Elixirguess do
 
     IO.gets("Pick a difficult level (1, 2 or 3):")
     |> parse_input()
-    |> get_range()
-    |> Enum.random()
+    |> pickup_number()
     |> IO.inspect()
   end
 
@@ -27,6 +26,12 @@ defmodule Elixirguess do
     data
     |> Integer.parse()
     |> parse_input()
+  end
+
+  def pickup_number(level) do
+    level
+    |> get_range()
+    |> Enum.random()
   end
 
   def get_range(level) do
