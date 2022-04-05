@@ -13,6 +13,7 @@ defmodule Elixirguess do
     |> Integer.parse()
     |> parse_input()
     |> get_range()
+    |> Enum.random()
     |> IO.inspect()
   end
 
