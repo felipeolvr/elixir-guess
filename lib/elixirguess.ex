@@ -55,5 +55,22 @@ defmodule Elixirguess do
   def play(picked_num) do
     IO.gets("I have my number. What is your guess?")
     |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess > picked_num do
+    IO.gets("Too high. Guess again:")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess < picked_num do
+    IO.gets("Too low. Guess again:")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(_usr_guess, _picked_num) do
+    IO.puts("You got it")
   end
 end
