@@ -1,7 +1,7 @@
 defmodule Elixirguess do
   use Application
 
-  def start(_, _) do
+  def start(_,_) do
     run()
     {:ok, self()}
   end
@@ -37,17 +37,10 @@ defmodule Elixirguess do
 
   def get_range(level) do
     case level do
-      1 ->
-        1..10
-
-      2 ->
-        1..100
-
-      3 ->
-        1..1000
-
-      _ ->
-        IO.puts("Invalid level!!!")
+      1 -> 1..10
+      2 -> 1..100
+      3 -> 1..1000
+      _ -> IO.puts("Invalid level!!!")
         run()
     end
   end
@@ -55,22 +48,23 @@ defmodule Elixirguess do
   def play(picked_num) do
     IO.gets("I have my number. What is your guess?")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, 1)
   end
 
-  def guess(usr_guess, picked_num) when usr_guess > picked_num do
+
+  def guess(usr_guess, picked_num, count) when usr_guess > picked_num do
     IO.gets("Too high. Guess again:")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, count + 1)
   end
 
-  def guess(usr_guess, picked_num) when usr_guess < picked_num do
+  def guess(usr_guess, picked_num, count) when usr_guess < picked_num do
     IO.gets("Too low. Guess again:")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, count + 1)
   end
 
-  def guess(_usr_guess, _picked_num) do
-    IO.puts("You got it")
+  def guess(_usr_guess, _picked_num, count) do
+    IO.puts("You got it #{count} guesses")
   end
 end
