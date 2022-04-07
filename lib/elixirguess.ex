@@ -13,7 +13,6 @@ defmodule Elixirguess do
     |> parse_input()
     |> pickup_number()
     |> play()
-    |> IO.inspect()
   end
 
   def parse_input(:error) do
@@ -66,13 +65,16 @@ defmodule Elixirguess do
 
   def guess(_usr_guess, _picked_num, count) do
     IO.puts("You got it #{count} guesses")
-    show_score()
+    show_score(count)
   end
 
-
-  def show_score() do
-   %{1..1 => "You're a mind rider!",
+  def show_score(guesses) do
+    {_, msg} =  %{1..1 => "You're a mind rider!",
       2..4 => "Most impresive",
       3..6 => "You can do better than that"}
+      |> Enum.find(fn {range, _} ->
+        Enum.member?(range, guesses)
+      end)
+    IO.puts(msg)
   end
 end
