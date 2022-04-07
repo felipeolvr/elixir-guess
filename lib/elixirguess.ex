@@ -1,5 +1,5 @@
 defmodule Elixirguess do
-  use Application
+   use Application
 
   def start(_,_) do
     run()
@@ -66,5 +66,13 @@ defmodule Elixirguess do
 
   def guess(_usr_guess, _picked_num, count) do
     IO.puts("You got it #{count} guesses")
+    show_score()
+  end
+
+
+  def show_score() do
+   %{1..1 => "You're a mind rider!",
+      2..4 => "Most impresive",
+      3..6 => "You can do better than that"}
   end
 end
